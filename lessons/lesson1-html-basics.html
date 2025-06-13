@@ -24,6 +24,7 @@
                         <a class="nav-link" href="#what-is-html">What is HTML?</a>
                         <a class="nav-link" href="#basic-structure">Basic Structure</a>
                         <a class="nav-link" href="#common-tags">Common Tags</a>
+                        <a class="nav-link" href="#challenges">Practice Challenges</a>
                         <a class="nav-link" href="#build-quiz">Build Your Quiz!</a>
                     </nav>
                 </div>
@@ -122,6 +123,21 @@
                             </div>
                         </div>
                     </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="challenges" class="mt-5">
+                    <h2>🏋️ Practice Challenges</h2>
+                    <p>Let's practice what you've learned with interactive coding challenges!</p>
+
+                    <div id="challenge-1"></div>
+                    
+                    <div id="challenge-2"></div>
+                    
+                    <div id="challenge-3"></div>
+                    
+                    <div id="challenge-4"></div>
                 </section>
 
                 <div class="section-divider"></div>
@@ -229,5 +245,143 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/code-challenges.js"></script>
+    
+    <script>
+        // Initialize challenges for Lesson 1
+        
+        // Challenge 1: Create your first HTML element
+        codeChallenge.registerChallenge('html-challenge-1', {
+            title: 'Challenge 1: Create a Paragraph',
+            description: 'Create a paragraph element with the text "Hello, World!"',
+            initialCode: '<!-- Write your HTML code here -->\n',
+            type: 'html',
+            hints: [
+                'Use the <p> tag to create a paragraph',
+                'Remember to close your tag with </p>',
+                'The complete code should be: <p>Hello, World!</p>'
+            ],
+            validator: (code) => {
+                const normalized = code.toLowerCase().replace(/\s+/g, ' ').trim();
+                if (normalized.includes('<p>hello, world!</p>') || normalized.includes('<p>hello world!</p>')) {
+                    return { success: true, message: 'Perfect! You created your first paragraph!' };
+                }
+                if (normalized.includes('<p>') && normalized.includes('</p>')) {
+                    return { success: false, message: 'Good! You have the paragraph tags. Make sure the text says "Hello, World!"' };
+                }
+                if (normalized.includes('<p>')) {
+                    return { success: false, message: 'You started well! Don\'t forget to close the tag with </p>' };
+                }
+                return { success: false, message: 'Try using the <p> tag to create a paragraph' };
+            }
+        });
+
+        // Challenge 2: Create a heading
+        codeChallenge.registerChallenge('html-challenge-2', {
+            title: 'Challenge 2: Add a Heading',
+            description: 'Create an H1 heading that says "Welcome to My Page" and a paragraph below it',
+            initialCode: '<!-- Create an H1 heading and a paragraph -->\n',
+            type: 'html',
+            hints: [
+                'Use <h1> for the main heading',
+                'Add a <p> tag after the heading',
+                'Structure: <h1>text</h1> followed by <p>text</p>'
+            ],
+            validator: (code) => {
+                const hasH1 = /<h1[^>]*>.*<\/h1>/i.test(code);
+                const hasP = /<p[^>]*>.*<\/p>/i.test(code);
+                const hasWelcome = /welcome\s+to\s+my\s+page/i.test(code);
+                
+                if (hasH1 && hasP && hasWelcome) {
+                    return { success: true, message: 'Excellent! You\'ve created a heading and paragraph structure!' };
+                }
+                if (hasH1 && hasP) {
+                    return { success: false, message: 'Good structure! Make sure the heading says "Welcome to My Page"' };
+                }
+                if (hasH1 || hasP) {
+                    return { success: false, message: 'Getting there! You need both an H1 heading AND a paragraph' };
+                }
+                return { success: false, message: 'Start by adding an <h1> tag for the heading' };
+            }
+        });
+
+        // Challenge 3: Create a button
+        codeChallenge.registerChallenge('html-challenge-3', {
+            title: 'Challenge 3: Create Interactive Elements',
+            description: 'Create a div containing a button that says "Click Me!" and an input field with a placeholder',
+            initialCode: '<!-- Create a div with a button and input inside -->\n',
+            type: 'html',
+            hints: [
+                'Start with a <div> container',
+                'Add a <button> inside the div',
+                'Add an <input> with placeholder="Enter text here"',
+                'Structure: <div><button>text</button><input placeholder="text"></div>'
+            ],
+            validator: (code) => {
+                const hasDiv = /<div[^>]*>.*<\/div>/i.test(code);
+                const hasButton = /<button[^>]*>.*click\s*me.*<\/button>/i.test(code);
+                const hasInput = /<input[^>]*>/i.test(code);
+                const hasPlaceholder = /placeholder\s*=\s*["'][^"']*["']/i.test(code);
+                
+                // Check if button and input are inside div
+                const divMatch = code.match(/<div[^>]*>([\s\S]*?)<\/div>/i);
+                const elementsInsideDiv = divMatch && divMatch[1].includes('<button') && divMatch[1].includes('<input');
+                
+                if (hasDiv && hasButton && hasInput && hasPlaceholder && elementsInsideDiv) {
+                    return { success: true, message: 'Fantastic! You\'ve created a complete interactive section!' };
+                }
+                if (hasDiv && hasButton && hasInput) {
+                    if (!elementsInsideDiv) {
+                        return { success: false, message: 'Good elements! Make sure the button and input are INSIDE the div' };
+                    }
+                    return { success: false, message: 'Almost there! Add a placeholder attribute to your input' };
+                }
+                if (hasButton && hasInput) {
+                    return { success: false, message: 'Good! Now wrap them in a <div> container' };
+                }
+                return { success: false, message: 'Start by creating a <div>, then add a <button> and <input> inside it' };
+            }
+        });
+
+        // Challenge 4: Build a mini form
+        codeChallenge.registerChallenge('html-challenge-4', {
+            title: 'Challenge 4: Build a Quiz Question',
+            description: 'Create a quiz question structure with an H2 heading, a paragraph for the question, and 4 buttons for answers',
+            initialCode: '<!-- Build a quiz question with:\n     - H2 heading saying "Question 1"\n     - Paragraph with a question\n     - 4 buttons for answer choices -->\n',
+            type: 'html',
+            hints: [
+                'Start with an <h2> for "Question 1"',
+                'Add a <p> with any question you like',
+                'Create 4 <button> elements for the answers',
+                'You can wrap everything in a <div> for organization'
+            ],
+            validator: (code) => {
+                const hasH2 = /<h2[^>]*>.*question\s*1.*<\/h2>/i.test(code);
+                const hasP = /<p[^>]*>.*\?.*<\/p>/i.test(code); // Check for question mark
+                const buttonMatches = code.match(/<button[^>]*>.*?<\/button>/gi) || [];
+                const buttonCount = buttonMatches.length;
+                
+                if (hasH2 && hasP && buttonCount >= 4) {
+                    return { success: true, message: 'Amazing! You\'ve built a complete quiz question structure! This is exactly what we\'ll use in our quiz game!' };
+                }
+                if (hasH2 && hasP && buttonCount > 0) {
+                    return { success: false, message: `Good progress! You have ${buttonCount} button${buttonCount > 1 ? 's' : ''}. Add ${4 - buttonCount} more for the answer choices.` };
+                }
+                if (hasH2 && hasP) {
+                    return { success: false, message: 'Great start! Now add 4 buttons for the answer choices' };
+                }
+                if (hasH2 || hasP) {
+                    return { success: false, message: 'You\'re on the right track! Make sure you have both an H2 heading and a paragraph with a question' };
+                }
+                return { success: false, message: 'Start with an <h2>Question 1</h2> heading' };
+            }
+        });
+
+        // Create the challenge UIs
+        codeChallenge.createChallengeUI('challenge-1', 'html-challenge-1');
+        codeChallenge.createChallengeUI('challenge-2', 'html-challenge-2');
+        codeChallenge.createChallengeUI('challenge-3', 'html-challenge-3');
+        codeChallenge.createChallengeUI('challenge-4', 'html-challenge-4');
+    </script>
 </body>
 </html>

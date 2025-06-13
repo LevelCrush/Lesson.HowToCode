@@ -37,6 +37,7 @@
                         <a class="nav-link" href="#css-syntax">CSS Syntax</a>
                         <a class="nav-link" href="#colors-fonts">Colors & Fonts</a>
                         <a class="nav-link" href="#box-model">The Box Model</a>
+                        <a class="nav-link" href="#challenges">Practice Challenges</a>
                         <a class="nav-link" href="#style-quiz">Style Your Quiz!</a>
                     </nav>
                 </div>
@@ -177,6 +178,21 @@
     width: 200px;      /* Content width */
 }</code></pre>
                     </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="challenges" class="mt-5">
+                    <h2>🏋️ Practice Challenges</h2>
+                    <p>Let's practice your CSS skills with interactive coding challenges!</p>
+
+                    <div id="css-challenge-1"></div>
+                    
+                    <div id="css-challenge-2"></div>
+                    
+                    <div id="css-challenge-3"></div>
+                    
+                    <div id="css-challenge-4"></div>
                 </section>
 
                 <div class="section-divider"></div>
@@ -345,5 +361,151 @@ button:hover {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/code-challenges.js"></script>
+    
+    <script>
+        // Initialize CSS challenges for Lesson 2
+        
+        // Challenge 1: Style text color
+        codeChallenge.registerChallenge('css-challenge-1', {
+            title: 'Challenge 1: Change Text Color',
+            description: 'Style the h1 element to have blue color',
+            initialCode: '/* Make the h1 text blue */\n',
+            type: 'css',
+            demoHTML: '<h1>Hello CSS!</h1>',
+            hints: [
+                'Select the h1 element with: h1 { }',
+                'Use the color property',
+                'The value for blue can be: blue, #0000FF, or rgb(0,0,255)'
+            ],
+            validator: (code) => {
+                const hasH1Selector = /h1\s*{/i.test(code);
+                const hasColorProperty = /color\s*:/i.test(code);
+                const hasBlueValue = /(blue|#0000ff|#00f|rgb\s*\(\s*0\s*,\s*0\s*,\s*255\s*\))/i.test(code);
+                
+                if (hasH1Selector && hasColorProperty && hasBlueValue) {
+                    return { success: true, message: 'Perfect! You styled the h1 with blue color!' };
+                }
+                if (hasH1Selector && hasColorProperty) {
+                    return { success: false, message: 'Good! Now set the color value to blue' };
+                }
+                if (hasH1Selector) {
+                    return { success: false, message: 'Great start! Add the color property inside the h1 rule' };
+                }
+                return { success: false, message: 'Start by selecting h1 with: h1 { }' };
+            }
+        });
+
+        // Challenge 2: Multiple properties
+        codeChallenge.registerChallenge('css-challenge-2', {
+            title: 'Challenge 2: Style a Button',
+            description: 'Style the button with: background-color of green, white text color, and padding of 10px',
+            initialCode: '/* Style the button */\n',
+            type: 'css',
+            demoHTML: '<button>Click Me!</button>',
+            hints: [
+                'Select button with: button { }',
+                'Add three properties: background-color, color, and padding',
+                'Use green for background, white for text'
+            ],
+            validator: (code) => {
+                const hasButtonSelector = /button\s*{/i.test(code);
+                const hasBackgroundColor = /background-color\s*:.*green/i.test(code);
+                const hasTextColor = /color\s*:.*white/i.test(code);
+                const hasPadding = /padding\s*:.*10px/i.test(code);
+                
+                const propertiesCount = [hasBackgroundColor, hasTextColor, hasPadding].filter(Boolean).length;
+                
+                if (hasButtonSelector && propertiesCount === 3) {
+                    return { success: true, message: 'Excellent! Your button looks great with all three styles!' };
+                }
+                if (hasButtonSelector && propertiesCount > 0) {
+                    return { success: false, message: `Good progress! You have ${propertiesCount}/3 properties. Keep adding!` };
+                }
+                if (hasButtonSelector) {
+                    return { success: false, message: 'Good! Now add the three properties inside the button rule' };
+                }
+                return { success: false, message: 'Start by selecting the button element' };
+            }
+        });
+
+        // Challenge 3: Class selectors
+        codeChallenge.registerChallenge('css-challenge-3', {
+            title: 'Challenge 3: Use Class Selectors',
+            description: 'Style elements with the class "highlight" to have a yellow background',
+            initialCode: '/* Style elements with class="highlight" */\n',
+            type: 'css',
+            demoHTML: '<p>Normal paragraph</p><p class="highlight">Highlighted paragraph!</p><span class="highlight">Also highlighted!</span>',
+            hints: [
+                'Class selectors start with a dot: .classname',
+                'Select .highlight { }',
+                'Use background-color: yellow;'
+            ],
+            validator: (code) => {
+                const hasClassSelector = /\.highlight\s*{/i.test(code);
+                const hasBackgroundColor = /background-color\s*:/i.test(code);
+                const hasYellow = /yellow|#ffff00|#ff0|rgb\s*\(\s*255\s*,\s*255\s*,\s*0\s*\)/i.test(code);
+                
+                if (hasClassSelector && hasBackgroundColor && hasYellow) {
+                    return { success: true, message: 'Perfect! You\'ve mastered class selectors!' };
+                }
+                if (hasClassSelector && hasBackgroundColor) {
+                    return { success: false, message: 'Almost there! Set the background-color to yellow' };
+                }
+                if (hasClassSelector) {
+                    return { success: false, message: 'Good! Now add background-color inside the rule' };
+                }
+                if (/highlight\s*{/i.test(code)) {
+                    return { success: false, message: 'Close! Remember to use a dot (.) before the class name' };
+                }
+                return { success: false, message: 'Use .highlight to select elements with the highlight class' };
+            }
+        });
+
+        // Challenge 4: Quiz styling
+        codeChallenge.registerChallenge('css-challenge-4', {
+            title: 'Challenge 4: Style a Quiz Button',
+            description: 'Create beautiful quiz answer buttons with: blue background, white text, 15px padding, rounded corners (5px), and hover effect',
+            initialCode: '/* Style quiz answer buttons */\n.answer-btn {\n    \n}\n\n/* Add hover effect */\n',
+            type: 'css',
+            demoHTML: '<div><button class="answer-btn">A. Answer Option 1</button><button class="answer-btn">B. Answer Option 2</button></div>',
+            hints: [
+                'First complete the .answer-btn rule with all properties',
+                'For rounded corners use: border-radius: 5px;',
+                'For hover effect use: .answer-btn:hover { }',
+                'Make the hover background a darker blue'
+            ],
+            validator: (code) => {
+                const hasAnswerBtn = /\.answer-btn\s*{/i.test(code);
+                const hasBackground = /background-color\s*:.*blue/i.test(code) || /background\s*:.*blue/i.test(code);
+                const hasColor = /color\s*:.*white/i.test(code);
+                const hasPadding = /padding\s*:.*15px/i.test(code);
+                const hasBorderRadius = /border-radius\s*:.*5px/i.test(code);
+                const hasHover = /\.answer-btn:hover\s*{/i.test(code);
+                
+                const mainProperties = [hasBackground, hasColor, hasPadding, hasBorderRadius].filter(Boolean).length;
+                
+                if (hasAnswerBtn && mainProperties === 4 && hasHover) {
+                    return { success: true, message: 'Outstanding! You\'ve created professional-looking quiz buttons with hover effects!' };
+                }
+                if (hasAnswerBtn && mainProperties === 4) {
+                    return { success: false, message: 'Great styling! Now add a hover effect with .answer-btn:hover { }' };
+                }
+                if (hasAnswerBtn && mainProperties > 0) {
+                    return { success: false, message: `Making progress! You have ${mainProperties}/4 main properties. Keep going!` };
+                }
+                if (hasAnswerBtn) {
+                    return { success: false, message: 'Good start! Add the required properties inside .answer-btn' };
+                }
+                return { success: false, message: 'The initial code has .answer-btn started for you. Add properties inside!' };
+            }
+        });
+
+        // Create the challenge UIs
+        codeChallenge.createChallengeUI('css-challenge-1', 'css-challenge-1');
+        codeChallenge.createChallengeUI('css-challenge-2', 'css-challenge-2');
+        codeChallenge.createChallengeUI('css-challenge-3', 'css-challenge-3');
+        codeChallenge.createChallengeUI('css-challenge-4', 'css-challenge-4');
+    </script>
 </body>
 </html>

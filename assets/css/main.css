@@ -90,3 +90,179 @@ pre {
         position: static;
     }
 }
+
+/* Code Challenge Styles */
+.code-challenge-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.challenge-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.challenge-header h4 {
+    color: #2196F3;
+    margin-bottom: 10px;
+}
+
+.code-editor-section {
+    margin-bottom: 20px;
+}
+
+.editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+}
+
+.language-label {
+    font-weight: bold;
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.code-editor {
+    width: 100%;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 0 0 4px 4px;
+    background-color: #f8f9fa;
+    color: #212529;
+    resize: vertical;
+    min-height: 150px;
+}
+
+.code-editor:focus {
+    outline: none;
+    border-color: #2196F3;
+    background-color: #fff;
+}
+
+.editor-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.output-section {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #e9ecef;
+}
+
+.output-header span {
+    font-weight: bold;
+    color: #495057;
+}
+
+.code-output {
+    padding: 15px;
+    min-height: 100px;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.output-iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    background-color: white;
+}
+
+.code-output pre {
+    margin: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
+.code-output .error {
+    color: #dc3545;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.feedback-section {
+    margin-top: 15px;
+}
+
+.feedback-section .alert {
+    margin-bottom: 0;
+}
+
+/* Challenge specific button styles */
+.code-challenge-container .btn {
+    transition: all 0.3s ease;
+}
+
+.code-challenge-container .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Progress indicator */
+.challenge-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.progress-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Hint styles */
+.hint-box {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Syntax highlighting colors (basic) */
+.code-editor.html-mode {
+    color: #333;
+}
+
+.code-editor.css-mode {
+    color: #0066cc;
+}
+
+.code-editor.js-mode {
+    color: #008080;
+}

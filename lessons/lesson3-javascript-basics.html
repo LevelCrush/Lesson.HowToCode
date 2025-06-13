@@ -25,6 +25,7 @@
                         <a class="nav-link" href="#variables">Variables</a>
                         <a class="nav-link" href="#functions">Functions</a>
                         <a class="nav-link" href="#conditions">If/Else Conditions</a>
+                        <a class="nav-link" href="#challenges">Practice Challenges</a>
                         <a class="nav-link" href="#build-game">Build Number Game!</a>
                     </nav>
                 </div>
@@ -173,6 +174,21 @@ if (score >= 90) {
                             <li><code>&lt;=</code> less than or equal</li>
                         </ul>
                     </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="challenges" class="mt-5">
+                    <h2>🏋️ Practice Challenges</h2>
+                    <p>Practice your JavaScript skills with these interactive coding challenges!</p>
+
+                    <div id="js-challenge-1"></div>
+                    
+                    <div id="js-challenge-2"></div>
+                    
+                    <div id="js-challenge-3"></div>
+                    
+                    <div id="js-challenge-4"></div>
                 </section>
 
                 <div class="section-divider"></div>
@@ -361,5 +377,159 @@ if (score >= 90) {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/code-challenges.js"></script>
+    
+    <script>
+        // Initialize JavaScript challenges for Lesson 3
+        
+        // Challenge 1: Variables
+        codeChallenge.registerChallenge('js-challenge-1', {
+            title: 'Challenge 1: Create Variables',
+            description: 'Create a variable named "score" and set it to 100',
+            initialCode: '// Create a variable named score with value 100\n',
+            type: 'javascript',
+            hints: [
+                'Use let or const to declare variables',
+                'Syntax: let variableName = value;',
+                'The exact code: let score = 100;'
+            ],
+            validator: (code) => {
+                // Check for variable declaration
+                const hasLet = /let\s+score\s*=\s*100/i.test(code);
+                const hasConst = /const\s+score\s*=\s*100/i.test(code);
+                const hasVar = /var\s+score\s*=\s*100/i.test(code);
+                
+                if (hasLet || hasConst || hasVar) {
+                    return { success: true, message: 'Perfect! You created the score variable!' };
+                }
+                
+                if (/score\s*=\s*100/i.test(code)) {
+                    return { success: false, message: 'You assigned the value, but remember to declare the variable with let, const, or var' };
+                }
+                
+                if (/(let|const|var)\s+score/i.test(code)) {
+                    return { success: false, message: 'Good start! Now assign the value 100 to score' };
+                }
+                
+                return { success: false, message: 'Create a variable using: let score = 100;' };
+            }
+        });
+
+        // Challenge 2: Functions
+        codeChallenge.registerChallenge('js-challenge-2', {
+            title: 'Challenge 2: Write a Function',
+            description: 'Create a function named "greet" that logs "Hello World!" to the console',
+            initialCode: '// Create a function that logs "Hello World!"\n',
+            type: 'javascript',
+            hints: [
+                'Use function keyword: function functionName() { }',
+                'Use console.log() to print messages',
+                'Inside the function body, add: console.log("Hello World!");'
+            ],
+            validator: (code) => {
+                const hasFunctionDeclaration = /function\s+greet\s*\(\s*\)/i.test(code);
+                const hasArrowFunction = /const\s+greet\s*=\s*\(\s*\)\s*=>/i.test(code);
+                const hasConsoleLog = /console\.log\s*\(\s*["']Hello World!?["']\s*\)/i.test(code);
+                
+                if ((hasFunctionDeclaration || hasArrowFunction) && hasConsoleLog) {
+                    return { success: true, message: 'Excellent! Your greet function works perfectly!' };
+                }
+                
+                if (hasFunctionDeclaration || hasArrowFunction) {
+                    return { success: false, message: 'Good function declaration! Now add console.log("Hello World!") inside' };
+                }
+                
+                if (hasConsoleLog) {
+                    return { success: false, message: 'You have the console.log! Now wrap it in a function named greet' };
+                }
+                
+                return { success: false, message: 'Start with: function greet() { }' };
+            }
+        });
+
+        // Challenge 3: Conditionals
+        codeChallenge.registerChallenge('js-challenge-3', {
+            title: 'Challenge 3: If Statement',
+            description: 'Write an if statement that checks if a variable "age" is greater than 18, and logs "Adult" if true',
+            initialCode: 'let age = 21;\n\n// Write your if statement here\n',
+            type: 'javascript',
+            hints: [
+                'If statement syntax: if (condition) { }',
+                'Use > to check greater than',
+                'Complete code: if (age > 18) { console.log("Adult"); }'
+            ],
+            validator: (code) => {
+                const hasIf = /if\s*\(/i.test(code);
+                const hasCondition = /age\s*>\s*18/i.test(code);
+                const hasConsoleLog = /console\.log\s*\(\s*["']Adult["']\s*\)/i.test(code);
+                
+                // Check if console.log is inside if block
+                const ifMatch = code.match(/if\s*\([^)]*\)\s*{([^}]*)}/i);
+                const logInsideIf = ifMatch && ifMatch[1].includes('console.log') && /Adult/i.test(ifMatch[1]);
+                
+                if (hasIf && hasCondition && hasConsoleLog && logInsideIf) {
+                    return { success: true, message: 'Perfect! Your if statement correctly checks age and logs "Adult"!' };
+                }
+                
+                if (hasIf && hasCondition && hasConsoleLog) {
+                    return { success: false, message: 'Almost there! Make sure console.log("Adult") is inside the if block' };
+                }
+                
+                if (hasIf && hasCondition) {
+                    return { success: false, message: 'Good condition! Now add console.log("Adult") inside the if block' };
+                }
+                
+                if (hasIf) {
+                    return { success: false, message: 'Good start! Add the condition: age > 18' };
+                }
+                
+                return { success: false, message: 'Write an if statement: if (age > 18) { }' };
+            }
+        });
+
+        // Challenge 4: Complete mini program
+        codeChallenge.registerChallenge('js-challenge-4', {
+            title: 'Challenge 4: Quiz Score Calculator',
+            description: 'Create a function "checkScore" that takes a score parameter. If score >= 70, return "Pass", otherwise return "Fail"',
+            initialCode: '// Create a function that checks if a score passes or fails\n// Pass is 70 or higher\n',
+            type: 'javascript',
+            hints: [
+                'Start with: function checkScore(score) { }',
+                'Use if/else: if (score >= 70) { return "Pass"; } else { return "Fail"; }',
+                'Remember to use >= for "greater than or equal to"',
+                'The function must return a value, not console.log it'
+            ],
+            validator: (code) => {
+                const hasFunctionWithParam = /function\s+checkScore\s*\(\s*score\s*\)/i.test(code);
+                const hasArrowWithParam = /(const|let)\s+checkScore\s*=\s*\(\s*score\s*\)\s*=>/i.test(code);
+                const hasCondition = /score\s*>=\s*70/i.test(code);
+                const hasReturnPass = /return\s+["']Pass["']/i.test(code);
+                const hasReturnFail = /return\s+["']Fail["']/i.test(code);
+                
+                if ((hasFunctionWithParam || hasArrowWithParam) && hasCondition && hasReturnPass && hasReturnFail) {
+                    return { success: true, message: 'Outstanding! Your checkScore function works perfectly! This is exactly the kind of logic we use in real quiz games!' };
+                }
+                
+                if ((hasFunctionWithParam || hasArrowWithParam) && hasCondition) {
+                    const missingReturns = [];
+                    if (!hasReturnPass) missingReturns.push('"Pass"');
+                    if (!hasReturnFail) missingReturns.push('"Fail"');
+                    return { success: false, message: `Good progress! Make sure to return ${missingReturns.join(' and ')}` };
+                }
+                
+                if (hasFunctionWithParam || hasArrowWithParam) {
+                    return { success: false, message: 'Good function! Now add the if/else logic to check if score >= 70' };
+                }
+                
+                return { success: false, message: 'Create a function: function checkScore(score) { }' };
+            }
+        });
+
+        // Create the challenge UIs
+        codeChallenge.createChallengeUI('js-challenge-1', 'js-challenge-1');
+        codeChallenge.createChallengeUI('js-challenge-2', 'js-challenge-2');
+        codeChallenge.createChallengeUI('js-challenge-3', 'js-challenge-3');
+        codeChallenge.createChallengeUI('js-challenge-4', 'js-challenge-4');
+    </script>
 </body>
 </html>
