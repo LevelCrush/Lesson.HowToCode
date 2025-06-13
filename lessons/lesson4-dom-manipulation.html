@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: DOM Manipulation - Click the Color Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Lesson 4: DOM Manipulation</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>In this lesson:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#what-is-dom">What is the DOM?</a>
+                        <a class="nav-link" href="#selecting">Selecting Elements</a>
+                        <a class="nav-link" href="#changing">Changing Elements</a>
+                        <a class="nav-link" href="#creating">Creating Elements</a>
+                        <a class="nav-link" href="#build-game">Build Color Game!</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Lesson 4: DOM Manipulation 🎨</h1>
+                <p class="lead">Learn to control and change any part of your webpage with JavaScript!</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> Build a "Click the Color" game where players must click the right color!
+                </div>
+
+                <section id="what-is-dom" class="mt-5">
+                    <h2>What is the DOM?</h2>
+                    <p>DOM stands for <strong>Document Object Model</strong>. It's how JavaScript sees and interacts with your HTML.</p>
+                    
+                    <div class="interactive-demo">
+                        <h4>Think of it like this:</h4>
+                        <ul>
+                            <li>HTML creates the elements</li>
+                            <li>CSS styles them</li>
+                            <li>JavaScript can find, change, add, or remove them!</li>
+                        </ul>
+                        
+                        <div id="demo-text" class="alert alert-info">
+                            Click the button to see DOM manipulation!
+                        </div>
+                        <button class="btn btn-primary" onclick="document.getElementById('demo-text').textContent = 'Text changed!'; document.getElementById('demo-text').style.backgroundColor = '#28a745';">Change the text above</button>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="selecting" class="mt-5">
+                    <h2>Selecting Elements</h2>
+                    <p>Before you can change something, you need to find it:</p>
+                    
+                    <div class="code-example">
+<pre><code>// Select by ID (most specific)
+let title = document.getElementById('myTitle');
+
+// Select by class (returns all matching elements)
+let buttons = document.getElementsByClassName('btn');
+
+// Select by tag name
+let paragraphs = document.getElementsByTagName('p');
+
+// Modern way: querySelector (uses CSS selectors)
+let firstButton = document.querySelector('.btn');
+let allButtons = document.querySelectorAll('.btn');</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Pro Tip:</strong> <code>querySelector</code> is the most flexible:
+                        <ul>
+                            <li><code>querySelector('#myId')</code> - select by ID</li>
+                            <li><code>querySelector('.myClass')</code> - select by class</li>
+                            <li><code>querySelector('button')</code> - select by tag</li>
+                            <li><code>querySelector('#container .btn')</code> - complex selectors!</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="changing" class="mt-5">
+                    <h2>Changing Elements</h2>
+                    <p>Once you've selected an element, you can change it:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Change Text Content</h4>
+                            <div class="code-example">
+<pre><code>let heading = document.getElementById('title');
+heading.textContent = "New Title!";
+
+// HTML content (can include tags)
+heading.innerHTML = "New <em>Title</em>!";</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Change Styles</h4>
+                            <div class="code-example">
+<pre><code>let box = document.getElementById('myBox');
+box.style.backgroundColor = 'red';
+box.style.width = '200px';
+box.style.fontSize = '20px';</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-demo mt-4">
+                        <h4>Try it yourself!</h4>
+                        <div id="change-me" style="padding: 20px; background-color: #f0f0f0; text-align: center;">
+                            Change my style!
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-sm btn-danger" onclick="document.getElementById('change-me').style.backgroundColor = '#ff6b6b';">Red</button>
+                            <button class="btn btn-sm btn-success" onclick="document.getElementById('change-me').style.backgroundColor = '#51cf66';">Green</button>
+                            <button class="btn btn-sm btn-primary" onclick="document.getElementById('change-me').style.fontSize = '24px';">Big Text</button>
+                            <button class="btn btn-sm btn-warning" onclick="document.getElementById('change-me').style.borderRadius = '20px';">Round</button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="creating" class="mt-5">
+                    <h2>Creating & Removing Elements</h2>
+                    <p>You can dynamically add or remove elements:</p>
+                    
+                    <div class="code-example">
+<pre><code>// Create a new element
+let newDiv = document.createElement('div');
+newDiv.textContent = "I'm new!";
+newDiv.style.color = 'blue';
+
+// Add it to the page
+document.body.appendChild(newDiv);
+
+// Remove an element
+let oldElement = document.getElementById('remove-me');
+oldElement.remove();</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Dynamic List Demo:</h4>
+                        <ul id="demo-list">
+                            <li>Item 1</li>
+                        </ul>
+                        <button class="btn btn-sm btn-success" onclick="let li = document.createElement('li'); li.textContent = 'New Item'; document.getElementById('demo-list').appendChild(li);">Add Item</button>
+                        <button class="btn btn-sm btn-danger" onclick="let list = document.getElementById('demo-list'); if(list.lastChild) list.removeChild(list.lastChild);">Remove Last</button>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="build-game" class="mt-5">
+                    <h2>🎮 Let's Build: Click the Color Game!</h2>
+                    <p>Put your DOM skills to work in this fun reaction game!</p>
+
+                    <div class="game-container">
+                        <h3>The Complete Game</h3>
+                        <p>Create a new file called <code>color-game.html</code>:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Click the Color Game&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        
+        .game-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        #color-display {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .color-box {
+            height: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+        
+        #score-display {
+            font-size: 24px;
+            margin: 20px;
+        }
+        
+        #message {
+            font-size: 20px;
+            height: 30px;
+            margin: 10px;
+        }
+        
+        .correct { color: #28a745; }
+        .wrong { color: #dc3545; }
+        
+        button {
+            font-size: 18px;
+            padding: 10px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="game-container"&gt;
+        &lt;h1&gt;🎨 Click the Color! 🎨&lt;/h1&gt;
+        &lt;p&gt;Click the box that matches this color:&lt;/p&gt;
+        
+        &lt;div id="color-display"&gt;RGB(255, 0, 0)&lt;/div&gt;
+        
+        &lt;div class="color-grid" id="color-grid"&gt;
+            &lt;!-- Color boxes will be created here --&gt;
+        &lt;/div&gt;
+        
+        &lt;div id="message"&gt;&lt;/div&gt;
+        &lt;div id="score-display"&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/div&gt;
+        
+        &lt;button onclick="newRound()"&gt;New Colors&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        let score = 0;
+        let correctColor;
+        
+        // Generate random RGB color
+        function randomColor() {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `RGB(${r}, ${g}, ${b})`;
+        }
+        
+        // Create color boxes
+        function createColorBoxes() {
+            let grid = document.getElementById('color-grid');
+            grid.innerHTML = ''; // Clear existing boxes
+            
+            // Pick a random position for the correct answer
+            let correctPosition = Math.floor(Math.random() * 6);
+            
+            for (let i = 0; i < 6; i++) {
+                let box = document.createElement('div');
+                box.className = 'color-box';
+                
+                // Set color
+                let color;
+                if (i === correctPosition) {
+                    color = correctColor;
+                } else {
+                    color = randomColor();
+                }
+                
+                box.style.backgroundColor = color;
+                
+                // Add click event
+                box.onclick = function() {
+                    checkAnswer(color);
+                };
+                
+                grid.appendChild(box);
+            }
+        }
+        
+        // Check if clicked color is correct
+        function checkAnswer(clickedColor) {
+            let message = document.getElementById('message');
+            
+            if (clickedColor.toUpperCase() === correctColor.toUpperCase()) {
+                message.textContent = "Correct! Well done!";
+                message.className = 'correct';
+                score++;
+                document.getElementById('score').textContent = score;
+                
+                // Auto new round after 1 second
+                setTimeout(newRound, 1000);
+            } else {
+                message.textContent = "Wrong! Try again!";
+                message.className = 'wrong';
+            }
+        }
+        
+        // Start a new round
+        function newRound() {
+            correctColor = randomColor();
+            document.getElementById('color-display').textContent = correctColor;
+            document.getElementById('message').textContent = '';
+            createColorBoxes();
+        }
+        
+        // Start the game
+        newRound();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>How the game works:</h4>
+                        <ol>
+                            <li>Generate a random RGB color as the target</li>
+                            <li>Create 6 color boxes using <code>createElement</code></li>
+                            <li>One box gets the correct color, others get random colors</li>
+                            <li>Use <code>onclick</code> to check if player clicked the right one</li>
+                            <li>Update score and message using DOM manipulation</li>
+                        </ol>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Challenge yourself!</h4>
+                        <p>Try adding these features:</p>
+                        <ul>
+                            <li>Difficulty levels (more boxes for harder levels)</li>
+                            <li>Timer - how many can you get in 60 seconds?</li>
+                            <li>Show the color name instead of RGB values</li>
+                            <li>Add sound effects for correct/wrong answers</li>
+                            <li>Keep track of high score</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>🎉 DOM Master!</h4>
+                        <p>You've learned powerful DOM manipulation:</p>
+                        <ul>
+                            <li>Selecting elements with querySelector and getElementById</li>
+                            <li>Changing text, styles, and attributes</li>
+                            <li>Creating new elements dynamically</li>
+                            <li>Removing elements from the page</li>
+                            <li>Adding click handlers to elements</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <h3>Ready for more interaction?</h3>
+                        <p>Next, we'll master event handling to respond to all kinds of user actions!</p>
+                        <a href="lesson5-event-handling.html" class="btn btn-success btn-lg">Go to Lesson 5: Event Handling →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

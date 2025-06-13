@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project: Memory Card Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Final Project</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>Project Overview:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#project-intro">Introduction</a>
+                        <a class="nav-link" href="#concepts-used">Concepts Review</a>
+                        <a class="nav-link" href="#game-structure">Game Structure</a>
+                        <a class="nav-link" href="#complete-code">Complete Code</a>
+                        <a class="nav-link" href="#enhancements">Enhancements</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Final Project: Memory Card Game 🃏</h1>
+                <p class="lead">Congratulations on reaching the final project! Let's combine everything you've learned to build an awesome memory matching game.</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> Create a complete memory card game using HTML, CSS, and JavaScript skills from all previous lessons!
+                </div>
+
+                <section id="project-intro" class="mt-5">
+                    <h2>Project Introduction</h2>
+                    <p>The Memory Card Game is a classic concentration game where players flip cards to find matching pairs. This project will showcase:</p>
+                    
+                    <div class="interactive-demo">
+                        <h4>What we're building:</h4>
+                        <ul>
+                            <li>A grid of face-down cards</li>
+                            <li>Click to flip cards and reveal symbols</li>
+                            <li>Match pairs to score points</li>
+                            <li>Timer and move counter</li>
+                            <li>Difficulty levels</li>
+                            <li>Smooth animations and effects</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="concepts-used" class="mt-5">
+                    <h2>Concepts We'll Use</h2>
+                    <p>This project combines everything you've learned:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5>From Previous Lessons:</h5>
+                                    <ul>
+                                        <li><strong>HTML:</strong> Structure and semantic elements</li>
+                                        <li><strong>CSS:</strong> Styling, animations, transitions</li>
+                                        <li><strong>JavaScript:</strong> Variables, functions, conditions</li>
+                                        <li><strong>DOM:</strong> Creating and modifying elements</li>
+                                        <li><strong>Events:</strong> Click handlers, game controls</li>
+                                        <li><strong>Animations:</strong> Card flips, match effects</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>New Concepts:</h5>
+                                    <ul>
+                                        <li><strong>Arrays:</strong> Storing card data</li>
+                                        <li><strong>Objects:</strong> Card properties</li>
+                                        <li><strong>Array methods:</strong> Shuffle, map, filter</li>
+                                        <li><strong>Game state:</strong> Managing game flow</li>
+                                        <li><strong>localStorage:</strong> Saving high scores</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="game-structure" class="mt-5">
+                    <h2>Game Structure Breakdown</h2>
+                    <p>Let's understand how the game works before diving into the code:</p>
+                    
+                    <div class="tip-box">
+                        <h4>Game Flow:</h4>
+                        <ol>
+                            <li><strong>Setup:</strong> Create card pairs with matching symbols</li>
+                            <li><strong>Shuffle:</strong> Randomly arrange cards on the board</li>
+                            <li><strong>Play:</strong> Player flips two cards at a time</li>
+                            <li><strong>Check:</strong> If cards match, keep them face up</li>
+                            <li><strong>Continue:</strong> If not, flip them back down</li>
+                            <li><strong>Win:</strong> Game ends when all pairs are found</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="complete-code" class="mt-5">
+                    <h2>🎮 The Complete Memory Card Game</h2>
+                    <p>Here's the full game combining all our learned concepts:</p>
+
+                    <div class="game-container">
+                        <h3>Create <code>memory-game.html</code>:</h3>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Memory Card Game&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background: #3498db;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            background: #2ecc71;
+            cursor: default;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            border-radius: 10px;
+            backface-visibility: hidden;
+        }
+
+        .card-front {
+            background: #3498db;
+            color: white;
+        }
+
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            border: 3px solid #3498db;
+        }
+
+        .matched .card-back {
+            border-color: #2ecc71;
+            background: #e8f8f5;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .modal h2 {
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        @keyframes match {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .card.matched {
+            animation: match 0.5s ease;
+        }
+
+        @media (max-width: 600px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .card-face {
+                font-size: 2em;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="game-container"&gt;
+        &lt;h1&gt;🧠 Memory Card Game 🧠&lt;/h1&gt;
+        
+        &lt;div class="game-info"&gt;
+            &lt;div&gt;Moves: &lt;span id="moves"&gt;0&lt;/span&gt;&lt;/div&gt;
+            &lt;div&gt;Time: &lt;span id="timer"&gt;00:00&lt;/span&gt;&lt;/div&gt;
+            &lt;div&gt;Matches: &lt;span id="matches"&gt;0&lt;/span&gt;/&lt;span id="total-pairs"&gt;8&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="game-board" id="game-board"&gt;&lt;/div&gt;
+        
+        &lt;div class="controls"&gt;
+            &lt;button class="btn-primary" onclick="startNewGame()"&gt;New Game&lt;/button&gt;
+            &lt;button class="btn-secondary" onclick="changeDifficulty()"&gt;Change Difficulty&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="modal" id="win-modal"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;h2&gt;🎉 Congratulations! 🎉&lt;/h2&gt;
+            &lt;p&gt;You completed the game!&lt;/p&gt;
+            &lt;p&gt;Moves: &lt;span id="final-moves"&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;p&gt;Time: &lt;span id="final-time"&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;p&gt;Best Score: &lt;span id="best-score"&gt;&lt;/span&gt; moves&lt;/p&gt;
+            &lt;button class="btn-primary" onclick="closeModal()"&gt;Play Again&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // Game variables
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        let gameStarted = false;
+        let timer = null;
+        let seconds = 0;
+        let difficulty = 'medium';
+
+        // Card symbols
+        const symbols = ['🎮', '🎯', '🎨', '🎭', '🎪', '🎬', '🎸', '🎺', 
+                        '🏀', '⚽', '🏈', '🎾', '🍕', '🍔', '🍿', '🍩'];
+
+        // Difficulty settings
+        const difficulties = {
+            easy: { pairs: 6, grid: 3 },
+            medium: { pairs: 8, grid: 4 },
+            hard: { pairs: 12, grid: 4 }
+        };
+
+        // Initialize game
+        function initGame() {
+            const setting = difficulties[difficulty];
+            const gameSymbols = symbols.slice(0, setting.pairs);
+            
+            // Create pairs
+            cards = [];
+            gameSymbols.forEach(symbol => {
+                cards.push({ symbol, id: cards.length });
+                cards.push({ symbol, id: cards.length });
+            });
+            
+            // Shuffle cards
+            cards = shuffleArray(cards);
+            
+            // Update UI
+            document.getElementById('total-pairs').textContent = setting.pairs;
+            createBoard(setting.grid);
+            resetGame();
+        }
+
+        // Shuffle array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Create game board
+        function createBoard(columns) {
+            const board = document.getElementById('game-board');
+            board.innerHTML = '';
+            board.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            
+            cards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.dataset.index = index;
+                cardElement.innerHTML = `
+                    &lt;div class="card-face card-front"&gt;?&lt;/div&gt;
+                    &lt;div class="card-face card-back"&gt;${card.symbol}&lt;/div&gt;
+                `;
+                cardElement.addEventListener('click', flipCard);
+                board.appendChild(cardElement);
+            });
+        }
+
+        // Flip card
+        function flipCard(e) {
+            const cardElement = e.currentTarget;
+            const index = parseInt(cardElement.dataset.index);
+            
+            // Start timer on first move
+            if (!gameStarted) {
+                gameStarted = true;
+                startTimer();
+            }
+            
+            // Prevent flipping if card is already flipped or matched
+            if (cardElement.classList.contains('flipped') || 
+                cardElement.classList.contains('matched') || 
+                flippedCards.length === 2) {
+                return;
+            }
+            
+            // Flip the card
+            cardElement.classList.add('flipped');
+            flippedCards.push({ element: cardElement, card: cards[index] });
+            
+            // Check for match when 2 cards are flipped
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                checkMatch();
+            }
+        }
+
+        // Check for match
+        function checkMatch() {
+            const [first, second] = flippedCards;
+            
+            if (first.card.symbol === second.card.symbol) {
+                // Match found!
+                setTimeout(() => {
+                    first.element.classList.add('matched');
+                    second.element.classList.add('matched');
+                    matchedPairs++;
+                    document.getElementById('matches').textContent = matchedPairs;
+                    flippedCards = [];
+                    
+                    // Check for win
+                    if (matchedPairs === difficulties[difficulty].pairs) {
+                        endGame();
+                    }
+                }, 500);
+            } else {
+                // No match - flip back
+                setTimeout(() => {
+                    first.element.classList.remove('flipped');
+                    second.element.classList.remove('flipped');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Timer functions
+        function startTimer() {
+            timer = setInterval(() => {
+                seconds++;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        // Reset game
+        function resetGame() {
+            flippedCards = [];
+            matchedPairs = 0;
+            moves = 0;
+            seconds = 0;
+            gameStarted = false;
+            
+            document.getElementById('moves').textContent = '0';
+            document.getElementById('matches').textContent = '0';
+            document.getElementById('timer').textContent = '00:00';
+            
+            stopTimer();
+        }
+
+        // Start new game
+        function startNewGame() {
+            initGame();
+        }
+
+        // Change difficulty
+        function changeDifficulty() {
+            const difficulties = ['easy', 'medium', 'hard'];
+            const currentIndex = difficulties.indexOf(difficulty);
+            difficulty = difficulties[(currentIndex + 1) % 3];
+            alert(`Difficulty changed to ${difficulty.toUpperCase()}`);
+            startNewGame();
+        }
+
+        // End game
+        function endGame() {
+            stopTimer();
+            
+            // Update modal
+            document.getElementById('final-moves').textContent = moves;
+            document.getElementById('final-time').textContent = 
+                document.getElementById('timer').textContent;
+            
+            // Check best score
+            const bestScore = localStorage.getItem(`memory-best-${difficulty}`) || Infinity;
+            if (moves < bestScore) {
+                localStorage.setItem(`memory-best-${difficulty}`, moves);
+            }
+            document.getElementById('best-score').textContent = 
+                Math.min(moves, bestScore);
+            
+            // Show modal
+            document.getElementById('win-modal').style.display = 'flex';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('win-modal').style.display = 'none';
+            startNewGame();
+        }
+
+        // Initialize on load
+        initGame();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>Key Features Implemented:</h4>
+                        <ul>
+                            <li><strong>Card flipping:</strong> 3D rotation animation</li>
+                            <li><strong>Match detection:</strong> Compare card symbols</li>
+                            <li><strong>Move counter:</strong> Track player performance</li>
+                            <li><strong>Timer:</strong> Show elapsed time</li>
+                            <li><strong>Difficulty levels:</strong> Easy, Medium, Hard</li>
+                            <li><strong>Best score:</strong> Saved in localStorage</li>
+                            <li><strong>Responsive design:</strong> Works on all devices</li>
+                            <li><strong>Win condition:</strong> Modal with stats</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="enhancements" class="mt-5">
+                    <h2>🚀 Enhancement Ideas</h2>
+                    <p>Now that you have a working game, try adding these features to make it even better:</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5>Beginner Enhancements:</h5>
+                                    <ul>
+                                        <li>Add sound effects for flips and matches</li>
+                                        <li>Create different card themes (animals, fruits)</li>
+                                        <li>Add a hint button that briefly shows all cards</li>
+                                        <li>Include a pause/resume feature</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Advanced Enhancements:</h5>
+                                    <ul>
+                                        <li>Multiplayer mode (take turns)</li>
+                                        <li>Online leaderboard</li>
+                                        <li>Custom card upload feature</li>
+                                        <li>Tournament mode with levels</li>
+                                        <li>Achievement system</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-demo mt-4">
+                        <h4>Code snippets for enhancements:</h4>
+                        
+                        <h5>Add Sound Effects:</h5>
+                        <div class="code-example">
+<pre><code>// Add to your HTML
+&lt;audio id="flip-sound" src="flip.mp3"&gt;&lt;/audio&gt;
+&lt;audio id="match-sound" src="match.mp3"&gt;&lt;/audio&gt;
+
+// In JavaScript
+function playSound(soundId) {
+    document.getElementById(soundId).play();
+}
+
+// In flipCard function
+playSound('flip-sound');
+
+// In checkMatch function when matched
+playSound('match-sound');</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="success-box mt-5">
+                    <h4>🎉 Congratulations! You're Now a Web Developer!</h4>
+                    <p>You've completed all lessons and built an amazing game! You've learned:</p>
+                    <ul>
+                        <li>✅ HTML structure and semantic elements</li>
+                        <li>✅ CSS styling, animations, and responsive design</li>
+                        <li>✅ JavaScript programming fundamentals</li>
+                        <li>✅ DOM manipulation and dynamic content</li>
+                        <li>✅ Event handling and user interaction</li>
+                        <li>✅ Animation techniques</li>
+                        <li>✅ Game development concepts</li>
+                    </ul>
+                    
+                    <h5 class="mt-4">What's Next?</h5>
+                    <p>Keep building! Try creating your own games, experiment with new features, and never stop learning. The web development world is full of exciting possibilities!</p>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <h3>🚀 Keep Coding!</h3>
+                    <p>You've completed the course! Share your games with friends and keep practicing.</p>
+                    <a href="../index.html" class="btn btn-success btn-lg">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

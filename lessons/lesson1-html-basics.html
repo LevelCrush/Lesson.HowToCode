@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: HTML Basics - Build a Quiz Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Lesson 1: HTML Basics</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>In this lesson:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#what-is-html">What is HTML?</a>
+                        <a class="nav-link" href="#basic-structure">Basic Structure</a>
+                        <a class="nav-link" href="#common-tags">Common Tags</a>
+                        <a class="nav-link" href="#build-quiz">Build Your Quiz!</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Lesson 1: HTML Basics 📝</h1>
+                <p class="lead">Let's start your coding journey by learning HTML - the skeleton of every webpage!</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> By the end of this lesson, you'll build the structure for a fun quiz game!
+                </div>
+
+                <section id="what-is-html" class="mt-5">
+                    <h2>What is HTML?</h2>
+                    <p>HTML stands for <strong>HyperText Markup Language</strong>. Think of it as the blueprint of a house - it defines the structure and content of your webpage.</p>
+                    
+                    <div class="interactive-demo">
+                        <h4>Try this!</h4>
+                        <p>HTML uses <strong>tags</strong> to mark up content. Tags are like containers:</p>
+                        <pre><code>&lt;p&gt;This is a paragraph!&lt;/p&gt;</code></pre>
+                        <p>The <code>&lt;p&gt;</code> is the opening tag, and <code>&lt;/p&gt;</code> is the closing tag.</p>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="basic-structure" class="mt-5">
+                    <h2>Basic HTML Structure</h2>
+                    <p>Every HTML page follows this basic structure:</p>
+                    
+                    <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;p&gt;This is my first webpage.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>What each part does:</strong>
+                        <ul>
+                            <li><code>&lt;!DOCTYPE html&gt;</code> - Tells the browser this is HTML5</li>
+                            <li><code>&lt;html&gt;</code> - The root element that contains everything</li>
+                            <li><code>&lt;head&gt;</code> - Contains metadata (info about the page)</li>
+                            <li><code>&lt;title&gt;</code> - Sets the browser tab title</li>
+                            <li><code>&lt;body&gt;</code> - Contains all visible content</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="common-tags" class="mt-5">
+                    <h2>Common HTML Tags</h2>
+                    <p>Here are the most useful HTML tags you'll need:</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Text Tags</h4>
+                            <ul>
+                                <li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> - Headings (h1 is biggest)</li>
+                                <li><code>&lt;p&gt;</code> - Paragraph</li>
+                                <li><code>&lt;strong&gt;</code> - Bold text</li>
+                                <li><code>&lt;em&gt;</code> - Italic text</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Container Tags</h4>
+                            <ul>
+                                <li><code>&lt;div&gt;</code> - Generic container</li>
+                                <li><code>&lt;button&gt;</code> - Clickable button</li>
+                                <li><code>&lt;input&gt;</code> - Input field</li>
+                                <li><code>&lt;form&gt;</code> - Form container</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="interactive-demo mt-4">
+                        <h4>Examples in action:</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <pre><code>&lt;h1&gt;Big Title&lt;/h1&gt;
+&lt;p&gt;This is a &lt;strong&gt;bold&lt;/strong&gt; word.&lt;/p&gt;
+&lt;button&gt;Click me!&lt;/button&gt;</code></pre>
+                            </div>
+                            <div class="col-md-6">
+                                <h1>Big Title</h1>
+                                <p>This is a <strong>bold</strong> word.</p>
+                                <button class="btn btn-primary">Click me!</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="build-quiz" class="mt-5">
+                    <h2>🎮 Let's Build: Quiz Game Structure!</h2>
+                    <p>Now let's use what we learned to build the HTML structure for a quiz game!</p>
+
+                    <div class="game-container">
+                        <h3>Step 1: Create the basic structure</h3>
+                        <p>Copy this code and save it as <code>my-quiz-game.html</code>:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Awesome Quiz Game&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to the Quiz Game!&lt;/h1&gt;
+    
+    &lt;div&gt;
+        &lt;h2&gt;Question 1:&lt;/h2&gt;
+        &lt;p&gt;What does HTML stand for?&lt;/p&gt;
+        
+        &lt;button&gt;A. Hyper Text Markup Language&lt;/button&gt;
+        &lt;button&gt;B. Hot Tamale Making Language&lt;/button&gt;
+        &lt;button&gt;C. How To Make Lasagna&lt;/button&gt;
+        &lt;button&gt;D. Heavy Tool Moving Language&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;p&gt;Score: 0&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Note:</strong> The buttons won't do anything yet - we need JavaScript for that! We'll add the magic in Lesson 3.
+                    </div>
+
+                    <div class="game-container">
+                        <h3>Step 2: Add more structure</h3>
+                        <p>Let's improve our quiz by adding IDs (unique names) to elements:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Awesome Quiz Game&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="game-container"&gt;
+        &lt;h1&gt;Welcome to the Quiz Game!&lt;/h1&gt;
+        
+        &lt;div id="question-box"&gt;
+            &lt;h2 id="question-number"&gt;Question 1:&lt;/h2&gt;
+            &lt;p id="question-text"&gt;What does HTML stand for?&lt;/p&gt;
+            
+            &lt;div id="answer-buttons"&gt;
+                &lt;button id="btn-a"&gt;A. Hyper Text Markup Language&lt;/button&gt;
+                &lt;button id="btn-b"&gt;B. Hot Tamale Making Language&lt;/button&gt;
+                &lt;button id="btn-c"&gt;C. How To Make Lasagna&lt;/button&gt;
+                &lt;button id="btn-d"&gt;D. Heavy Tool Moving Language&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div id="score-section"&gt;
+            &lt;p&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+
+                        <div class="tip-box">
+                            <strong>Why use IDs?</strong>
+                            <p>IDs are like name tags for your HTML elements. Later, we'll use CSS to style specific elements and JavaScript to make them interactive!</p>
+                        </div>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>🎉 Congratulations!</h4>
+                        <p>You've just built the HTML structure for a quiz game! Here's what you learned:</p>
+                        <ul>
+                            <li>HTML is the structure of web pages</li>
+                            <li>Tags are used to mark up content</li>
+                            <li>Every HTML page has a basic structure (DOCTYPE, html, head, body)</li>
+                            <li>Common tags include h1-h6, p, div, button</li>
+                            <li>IDs help us identify specific elements</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <h3>Ready for the next step?</h3>
+                        <p>In the next lesson, we'll make your quiz beautiful with CSS!</p>
+                        <a href="lesson2-css-styling.html" class="btn btn-success btn-lg">Go to Lesson 2: CSS Styling →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Event Handling - Whack-a-Mole Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Lesson 5: Event Handling</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>In this lesson:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#what-are-events">What are Events?</a>
+                        <a class="nav-link" href="#event-types">Common Event Types</a>
+                        <a class="nav-link" href="#event-listeners">Event Listeners</a>
+                        <a class="nav-link" href="#event-object">The Event Object</a>
+                        <a class="nav-link" href="#build-game">Build Whack-a-Mole!</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Lesson 5: Event Handling 🖱️</h1>
+                <p class="lead">Learn to respond to user actions - clicks, keyboard input, mouse movements, and more!</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> Build a Whack-a-Mole game using various event handlers!
+                </div>
+
+                <section id="what-are-events" class="mt-5">
+                    <h2>What are Events?</h2>
+                    <p>Events are things that happen in your webpage - like clicks, key presses, or page loading. JavaScript can "listen" for these events and respond!</p>
+                    
+                    <div class="interactive-demo">
+                        <h4>Events are everywhere!</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded" 
+                                     onmouseover="this.style.backgroundColor='#e3f2fd'" 
+                                     onmouseout="this.style.backgroundColor='#f8f9fa'"
+                                     onclick="this.textContent='Clicked!'">
+                                    Hover over me, then click!
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" 
+                                       placeholder="Type something..." 
+                                       onkeyup="document.getElementById('typed-text').textContent = 'You typed: ' + this.value">
+                                <p id="typed-text" class="mt-2">You typed: </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="event-types" class="mt-5">
+                    <h2>Common Event Types</h2>
+                    <p>Here are the most useful events you'll work with:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Mouse Events</h4>
+                            <ul>
+                                <li><code>click</code> - Mouse click</li>
+                                <li><code>dblclick</code> - Double click</li>
+                                <li><code>mouseover</code> - Mouse enters</li>
+                                <li><code>mouseout</code> - Mouse leaves</li>
+                                <li><code>mousemove</code> - Mouse moves</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Keyboard Events</h4>
+                            <ul>
+                                <li><code>keydown</code> - Key pressed down</li>
+                                <li><code>keyup</code> - Key released</li>
+                                <li><code>keypress</code> - Key pressed</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Form Events</h4>
+                            <ul>
+                                <li><code>submit</code> - Form submitted</li>
+                                <li><code>change</code> - Value changed</li>
+                                <li><code>focus</code> - Element focused</li>
+                                <li><code>blur</code> - Lost focus</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="interactive-demo mt-4">
+                        <h4>Try different events:</h4>
+                        <div id="event-demo" class="p-4 bg-warning text-center rounded" style="cursor: pointer;">
+                            Event Playground - Try clicking, double-clicking, or hovering!
+                        </div>
+                        <p id="event-log" class="mt-2">Event log will appear here...</p>
+                        <script>
+                            let demo = document.getElementById('event-demo');
+                            let log = document.getElementById('event-log');
+                            demo.onclick = () => log.textContent = 'Event: Click!';
+                            demo.ondblclick = () => log.textContent = 'Event: Double Click!';
+                            demo.onmouseover = () => log.textContent = 'Event: Mouse Over!';
+                            demo.onmouseout = () => log.textContent = 'Event: Mouse Out!';
+                        </script>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="event-listeners" class="mt-5">
+                    <h2>Event Listeners</h2>
+                    <p>There are three ways to handle events:</p>
+                    
+                    <div class="code-example">
+<pre><code>// Method 1: Inline HTML (not recommended)
+&lt;button onclick="alert('Clicked!')"&gt;Click Me&lt;/button&gt;
+
+// Method 2: DOM property
+button.onclick = function() {
+    alert('Clicked!');
+};
+
+// Method 3: addEventListener (BEST WAY!)
+button.addEventListener('click', function() {
+    alert('Clicked!');
+});</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Why use addEventListener?</strong>
+                        <ul>
+                            <li>Can add multiple handlers to same event</li>
+                            <li>Can remove handlers later</li>
+                            <li>More control over event behavior</li>
+                            <li>Works with all event types</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Multiple Event Listeners:</h4>
+                        <div class="code-example">
+<pre><code>let button = document.getElementById('multi-button');
+
+button.addEventListener('click', function() {
+    console.log('First handler');
+});
+
+button.addEventListener('click', function() {
+    console.log('Second handler');
+});
+
+// Both will run!</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="event-object" class="mt-5">
+                    <h2>The Event Object</h2>
+                    <p>When an event happens, JavaScript creates an event object with useful information:</p>
+                    
+                    <div class="code-example">
+<pre><code>element.addEventListener('click', function(event) {
+    console.log(event.type);        // 'click'
+    console.log(event.target);      // The clicked element
+    console.log(event.clientX);     // Mouse X position
+    console.log(event.clientY);     // Mouse Y position
+    
+    event.preventDefault();         // Stop default behavior
+    event.stopPropagation();       // Stop event bubbling
+});</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Mouse Position Tracker:</h4>
+                        <div id="mouse-area" class="p-4 bg-info text-white text-center rounded" style="cursor: crosshair;">
+                            Move your mouse here!
+                        </div>
+                        <p id="mouse-pos">Mouse position: X: 0, Y: 0</p>
+                        <script>
+                            document.getElementById('mouse-area').addEventListener('mousemove', function(e) {
+                                document.getElementById('mouse-pos').textContent = 
+                                    `Mouse position: X: ${e.offsetX}, Y: ${e.offsetY}`;
+                            });
+                        </script>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="build-game" class="mt-5">
+                    <h2>🎮 Let's Build: Whack-a-Mole Game!</h2>
+                    <p>Time to use all these events in a fun reaction game!</p>
+
+                    <div class="game-container">
+                        <h3>The Complete Game</h3>
+                        <p>Create a new file called <code>whack-a-mole.html</code>:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Whack-a-Mole Game&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .hole {
+            width: 120px;
+            height: 120px;
+            background: #8B4513;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .mole {
+            width: 80px;
+            height: 80px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 0.3s;
+        }
+        
+        .mole::before {
+            content: '👿';
+            font-size: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .mole.up {
+            bottom: 20px;
+        }
+        
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            font-size: 20px;
+        }
+        
+        button {
+            font-size: 20px;
+            padding: 10px 30px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #764ba2;
+        }
+        
+        button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        
+        #timer {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="game-container"&gt;
+        &lt;h1&gt;🔨 Whack-a-Mole! 🔨&lt;/h1&gt;
+        
+        &lt;div class="score-board"&gt;
+            &lt;div&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/div&gt;
+            &lt;div id="timer"&gt;Time: 30s&lt;/div&gt;
+            &lt;div&gt;High Score: &lt;span id="high-score"&gt;0&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="game-board" id="game-board"&gt;
+            &lt;!-- Holes will be created here --&gt;
+        &lt;/div&gt;
+        
+        &lt;button id="start-btn" onclick="startGame()"&gt;Start Game&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        let score = 0;
+        let timeLeft = 30;
+        let gameActive = false;
+        let moleTimer;
+        let countdownTimer;
+        let highScore = localStorage.getItem('whackHighScore') || 0;
+        
+        // Display high score
+        document.getElementById('high-score').textContent = highScore;
+        
+        // Create the game board
+        function createBoard() {
+            const board = document.getElementById('game-board');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const hole = document.createElement('div');
+                hole.className = 'hole';
+                hole.id = `hole-${i}`;
+                
+                const mole = document.createElement('div');
+                mole.className = 'mole';
+                
+                // Add click event to mole
+                mole.addEventListener('click', whackMole);
+                
+                hole.appendChild(mole);
+                board.appendChild(hole);
+            }
+        }
+        
+        // Show random mole
+        function showRandomMole() {
+            if (!gameActive) return;
+            
+            // Hide all moles
+            document.querySelectorAll('.mole').forEach(mole => {
+                mole.classList.remove('up');
+            });
+            
+            // Pick random hole
+            const randomHole = Math.floor(Math.random() * 9);
+            const mole = document.querySelector(`#hole-${randomHole} .mole`);
+            mole.classList.add('up');
+            
+            // Hide after random time
+            const hideTime = Math.random() * 1000 + 500; // 0.5-1.5 seconds
+            setTimeout(() => {
+                mole.classList.remove('up');
+            }, hideTime);
+        }
+        
+        // Whack the mole
+        function whackMole(event) {
+            if (!gameActive) return;
+            if (!event.target.classList.contains('up')) return;
+            
+            score++;
+            document.getElementById('score').textContent = score;
+            event.target.classList.remove('up');
+            
+            // Visual feedback
+            event.target.style.background = '#ff6b6b';
+            setTimeout(() => {
+                event.target.style.background = '#333';
+            }, 200);
+        }
+        
+        // Start the game
+        function startGame() {
+            score = 0;
+            timeLeft = 30;
+            gameActive = true;
+            
+            document.getElementById('score').textContent = score;
+            document.getElementById('start-btn').disabled = true;
+            
+            // Start spawning moles
+            moleTimer = setInterval(showRandomMole, 1000);
+            
+            // Start countdown
+            countdownTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = `Time: ${timeLeft}s`;
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+        
+        // End the game
+        function endGame() {
+            gameActive = false;
+            clearInterval(moleTimer);
+            clearInterval(countdownTimer);
+            
+            document.getElementById('start-btn').disabled = false;
+            
+            // Hide all moles
+            document.querySelectorAll('.mole').forEach(mole => {
+                mole.classList.remove('up');
+            });
+            
+            // Check high score
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('whackHighScore', highScore);
+                document.getElementById('high-score').textContent = highScore;
+                alert(`New High Score: ${score}! 🎉`);
+            } else {
+                alert(`Game Over! Your score: ${score}`);
+            }
+        }
+        
+        // Initialize game
+        createBoard();
+        
+        // Keyboard shortcut
+        document.addEventListener('keydown', function(event) {
+            if (event.key === ' ' && !gameActive) {
+                event.preventDefault();
+                startGame();
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>Event Handling in the Game:</h4>
+                        <ul>
+                            <li><strong>Click events</strong> on moles to "whack" them</li>
+                            <li><strong>Button click</strong> to start the game</li>
+                            <li><strong>Keyboard event</strong> (spacebar) as shortcut</li>
+                            <li><strong>Timer events</strong> with setInterval</li>
+                            <li>Event delegation for dynamically created elements</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Challenge yourself!</h4>
+                        <p>Try adding these features:</p>
+                        <ul>
+                            <li>Different mole types with different point values</li>
+                            <li>Sound effects on hit/miss</li>
+                            <li>Difficulty levels (moles appear faster)</li>
+                            <li>Power-ups (freeze time, double points)</li>
+                            <li>Miss penalty (clicking empty holes)</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>🎉 Event Expert!</h4>
+                        <p>You've mastered event handling:</p>
+                        <ul>
+                            <li>Different types of events (mouse, keyboard, timer)</li>
+                            <li>addEventListener for flexible event handling</li>
+                            <li>The event object and its properties</li>
+                            <li>Event delegation for dynamic elements</li>
+                            <li>Using localStorage to persist data</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <h3>Ready for motion?</h3>
+                        <p>Next, we'll learn animations to make things move smoothly!</p>
+                        <a href="lesson6-animations.html" class="btn btn-success btn-lg">Go to Lesson 6: Animations →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Animations - Catch the Bouncing Ball</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Lesson 6: Animations</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>In this lesson:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#css-animations">CSS Animations</a>
+                        <a class="nav-link" href="#transitions">CSS Transitions</a>
+                        <a class="nav-link" href="#js-animations">JavaScript Animations</a>
+                        <a class="nav-link" href="#request-animation">requestAnimationFrame</a>
+                        <a class="nav-link" href="#build-game">Build Ball Game!</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Lesson 6: Animations 🎬</h1>
+                <p class="lead">Bring your web pages to life with smooth, engaging animations!</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> Build a "Catch the Bouncing Ball" game using CSS and JavaScript animations!
+                </div>
+
+                <section id="css-animations" class="mt-5">
+                    <h2>CSS Animations</h2>
+                    <p>CSS animations let you animate elements without JavaScript!</p>
+                    
+                    <div class="code-example">
+<pre><code>@keyframes bounce {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(0px); }
+}
+
+.bouncing {
+    animation: bounce 1s infinite;
+}</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>See it in action:</h4>
+                        <style>
+                            @keyframes demo-bounce {
+                                0% { transform: translateY(0px); }
+                                50% { transform: translateY(-30px); }
+                                100% { transform: translateY(0px); }
+                            }
+                            .demo-ball {
+                                width: 50px;
+                                height: 50px;
+                                background: #007bff;
+                                border-radius: 50%;
+                                display: inline-block;
+                                margin: 20px;
+                                animation: demo-bounce 1s infinite;
+                            }
+                        </style>
+                        <div class="text-center">
+                            <div class="demo-ball"></div>
+                            <div class="demo-ball" style="animation-duration: 0.5s; background: #28a745;"></div>
+                            <div class="demo-ball" style="animation-duration: 2s; background: #dc3545;"></div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Animation Properties:</strong>
+                        <ul>
+                            <li><code>animation-name</code>: The @keyframes name</li>
+                            <li><code>animation-duration</code>: How long it takes</li>
+                            <li><code>animation-timing-function</code>: Speed curve (ease, linear)</li>
+                            <li><code>animation-iteration-count</code>: How many times (infinite)</li>
+                            <li><code>animation-direction</code>: Forward, reverse, alternate</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="transitions" class="mt-5">
+                    <h2>CSS Transitions</h2>
+                    <p>Transitions create smooth changes between two states:</p>
+                    
+                    <div class="code-example">
+<pre><code>.box {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    transition: all 0.3s ease;
+}
+
+.box:hover {
+    width: 150px;
+    background: red;
+    transform: rotate(45deg);
+}</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Hover over these boxes:</h4>
+                        <style>
+                            .transition-box {
+                                width: 80px;
+                                height: 80px;
+                                display: inline-block;
+                                margin: 10px;
+                                cursor: pointer;
+                            }
+                            .grow-box {
+                                background: #007bff;
+                                transition: transform 0.3s ease;
+                            }
+                            .grow-box:hover {
+                                transform: scale(1.5);
+                            }
+                            .spin-box {
+                                background: #28a745;
+                                transition: transform 0.5s ease;
+                            }
+                            .spin-box:hover {
+                                transform: rotate(180deg);
+                            }
+                            .color-box {
+                                background: #ffc107;
+                                transition: background-color 0.3s ease;
+                            }
+                            .color-box:hover {
+                                background-color: #dc3545;
+                            }
+                        </style>
+                        <div class="text-center">
+                            <div class="transition-box grow-box"></div>
+                            <div class="transition-box spin-box"></div>
+                            <div class="transition-box color-box"></div>
+                        </div>
+                        <p class="text-center text-muted">Grow, Spin, Color Change</p>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="js-animations" class="mt-5">
+                    <h2>JavaScript Animations</h2>
+                    <p>For complex animations, JavaScript gives you full control:</p>
+                    
+                    <div class="code-example">
+<pre><code>// Simple animation with setInterval
+let position = 0;
+let element = document.getElementById('moving-box');
+
+setInterval(function() {
+    position += 2;
+    element.style.left = position + 'px';
+    
+    // Reset when off screen
+    if (position > window.innerWidth) {
+        position = -100;
+    }
+}, 20);</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>JavaScript-powered animation:</h4>
+                        <div style="position: relative; height: 60px; overflow: hidden; background: #f0f0f0;">
+                            <div id="js-moving-box" style="position: absolute; width: 50px; height: 50px; background: #007bff; top: 5px; left: 0;">
+                                🚗
+                            </div>
+                        </div>
+                        <script>
+                            let jsPosition = 0;
+                            let jsBox = document.getElementById('js-moving-box');
+                            setInterval(function() {
+                                jsPosition += 3;
+                                jsBox.style.left = jsPosition + 'px';
+                                if (jsPosition > 600) jsPosition = -50;
+                            }, 20);
+                        </script>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="request-animation" class="mt-5">
+                    <h2>requestAnimationFrame</h2>
+                    <p>The best way to create smooth animations in JavaScript:</p>
+                    
+                    <div class="code-example">
+<pre><code>function animate() {
+    // Update animation
+    position += speed;
+    element.style.left = position + 'px';
+    
+    // Continue animation
+    requestAnimationFrame(animate);
+}
+
+// Start animation
+requestAnimationFrame(animate);</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Why use requestAnimationFrame?</strong>
+                        <ul>
+                            <li>Syncs with browser refresh rate (usually 60 FPS)</li>
+                            <li>Pauses when tab is not visible (saves battery)</li>
+                            <li>Smoother than setInterval</li>
+                            <li>Better performance</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="build-game" class="mt-5">
+                    <h2>🎮 Let's Build: Catch the Bouncing Ball!</h2>
+                    <p>Combine animations to create an exciting catching game!</p>
+
+                    <div class="game-container">
+                        <h3>The Complete Game</h3>
+                        <p>Create a new file called <code>bouncing-ball-game.html</code>:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Catch the Bouncing Ball&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #87CEEB, #98D8C8);
+        }
+        
+        #game-area {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            cursor: none;
+        }
+        
+        #ball {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #c44569);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
+        }
+        
+        #ball.caught {
+            transform: scale(0);
+        }
+        
+        #paddle {
+            position: absolute;
+            width: 120px;
+            height: 20px;
+            background: #2c3e50;
+            border-radius: 10px;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+        
+        #score-board {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        button {
+            font-size: 20px;
+            padding: 10px 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f39c12;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        @keyframes explode {
+            to {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="game-area"&gt;
+        &lt;div id="ball"&gt;&lt;/div&gt;
+        &lt;div id="paddle"&gt;&lt;/div&gt;
+        &lt;div id="score-board"&gt;
+            Score: &lt;span id="score"&gt;0&lt;/span&gt; | Misses: &lt;span id="misses"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div id="game-over"&gt;
+            &lt;h2&gt;Game Over!&lt;/h2&gt;
+            &lt;p&gt;Final Score: &lt;span id="final-score"&gt;0&lt;/span&gt;&lt;/p&gt;
+            &lt;button onclick="resetGame()"&gt;Play Again&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // Game variables
+        let ball = document.getElementById('ball');
+        let paddle = document.getElementById('paddle');
+        let gameArea = document.getElementById('game-area');
+        let score = 0;
+        let misses = 0;
+        let ballX = 100;
+        let ballY = 100;
+        let velocityX = 5;
+        let velocityY = 0;
+        let gravity = 0.5;
+        let bounceSpeed = -15;
+        let gameRunning = true;
+
+        // Update paddle position with mouse
+        gameArea.addEventListener('mousemove', function(e) {
+            if (!gameRunning) return;
+            let paddleX = e.clientX - 60; // Center paddle on cursor
+            paddle.style.left = paddleX + 'px';
+        });
+
+        // Create particle effect
+        function createParticles(x, y) {
+            for (let i = 0; i < 10; i++) {
+                let particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.setProperty('--x', (Math.random() - 0.5) * 100 + 'px');
+                particle.style.setProperty('--y', (Math.random() - 0.5) * 100 + 'px');
+                particle.style.animation = 'explode 0.5s ease-out forwards';
+                gameArea.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 500);
+            }
+        }
+
+        // Game loop
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            // Update ball position
+            ballX += velocityX;
+            ballY += velocityY;
+            velocityY += gravity;
+
+            // Bounce off walls
+            if (ballX <= 0 || ballX >= window.innerWidth - 50) {
+                velocityX = -velocityX;
+            }
+
+            // Check paddle collision
+            let paddleRect = paddle.getBoundingClientRect();
+            let ballRect = ball.getBoundingClientRect();
+
+            if (ballRect.bottom >= paddleRect.top && 
+                ballRect.bottom <= paddleRect.bottom &&
+                ballRect.right >= paddleRect.left && 
+                ballRect.left <= paddleRect.right &&
+                velocityY > 0) {
+                
+                // Ball caught!
+                velocityY = bounceSpeed;
+                score++;
+                document.getElementById('score').textContent = score;
+                
+                // Speed up game
+                velocityX *= 1.05;
+                
+                // Particle effect
+                createParticles(ballX + 25, ballY + 25);
+            }
+
+            // Check if ball fell
+            if (ballY > window.innerHeight) {
+                misses++;
+                document.getElementById('misses').textContent = misses;
+                
+                if (misses >= 3) {
+                    endGame();
+                } else {
+                    // Reset ball
+                    ballX = Math.random() * (window.innerWidth - 50);
+                    ballY = 100;
+                    velocityY = 0;
+                }
+            }
+
+            // Update ball position
+            ball.style.left = ballX + 'px';
+            ball.style.top = ballY + 'px';
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // End game
+        function endGame() {
+            gameRunning = false;
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('game-over').style.display = 'block';
+            gameArea.style.cursor = 'auto';
+        }
+
+        // Reset game
+        function resetGame() {
+            score = 0;
+            misses = 0;
+            ballX = 100;
+            ballY = 100;
+            velocityX = 5;
+            velocityY = 0;
+            gameRunning = true;
+            
+            document.getElementById('score').textContent = score;
+            document.getElementById('misses').textContent = misses;
+            document.getElementById('game-over').style.display = 'none';
+            gameArea.style.cursor = 'none';
+            
+            gameLoop();
+        }
+
+        // Start game
+        gameLoop();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>Animation Techniques Used:</h4>
+                        <ul>
+                            <li><strong>requestAnimationFrame</strong> for smooth 60 FPS gameplay</li>
+                            <li><strong>Physics simulation</strong> with gravity and velocity</li>
+                            <li><strong>CSS transitions</strong> for ball scaling effect</li>
+                            <li><strong>Particle animations</strong> with CSS keyframes</li>
+                            <li><strong>Dynamic positioning</strong> following mouse cursor</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Challenge yourself!</h4>
+                        <p>Try adding these features:</p>
+                        <ul>
+                            <li>Power-ups that slow down or shrink the ball</li>
+                            <li>Multiple balls at higher scores</li>
+                            <li>Background music and sound effects</li>
+                            <li>Different ball types with unique behaviors</li>
+                            <li>Leaderboard using localStorage</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>🎉 Animation Master!</h4>
+                        <p>You've learned to create smooth animations:</p>
+                        <ul>
+                            <li>CSS @keyframes for repeating animations</li>
+                            <li>CSS transitions for state changes</li>
+                            <li>JavaScript-controlled animations</li>
+                            <li>requestAnimationFrame for optimal performance</li>
+                            <li>Physics simulation (gravity, velocity, collision)</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <h3>Ready for the final challenge?</h3>
+                        <p>Put everything together in an epic memory card game!</p>
+                        <a href="lesson7-final-project.html" class="btn btn-success btn-lg">Go to Final Project →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

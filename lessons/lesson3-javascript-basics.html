@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: JavaScript Basics - Number Guessing Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Lesson 3: JavaScript Basics</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>In this lesson:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#what-is-js">What is JavaScript?</a>
+                        <a class="nav-link" href="#variables">Variables</a>
+                        <a class="nav-link" href="#functions">Functions</a>
+                        <a class="nav-link" href="#conditions">If/Else Conditions</a>
+                        <a class="nav-link" href="#build-game">Build Number Game!</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Lesson 3: JavaScript Basics ⚡</h1>
+                <p class="lead">Time to bring your web pages to life! JavaScript is the magic that makes things interactive.</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> Build a fun number guessing game using JavaScript fundamentals!
+                </div>
+
+                <section id="what-is-js" class="mt-5">
+                    <h2>What is JavaScript?</h2>
+                    <p>JavaScript is the programming language of the web. If HTML is the skeleton and CSS is the skin, JavaScript is the brain and muscles!</p>
+                    
+                    <div class="interactive-demo">
+                        <h4>JavaScript can:</h4>
+                        <ul>
+                            <li>React to button clicks</li>
+                            <li>Change content dynamically</li>
+                            <li>Validate forms</li>
+                            <li>Create animations</li>
+                            <li>Build entire games!</li>
+                        </ul>
+                        
+                        <button class="btn btn-primary" onclick="alert('Hello! JavaScript is working!')">Click me to see JavaScript in action!</button>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="variables" class="mt-5">
+                    <h2>Variables - Storing Information</h2>
+                    <p>Variables are like labeled boxes where you store data:</p>
+                    
+                    <div class="code-example">
+<pre><code>// Creating variables
+let playerName = "Alex";        // Text (string)
+let score = 0;                  // Number
+let isPlaying = true;           // Boolean (true/false)
+
+// You can change them later
+score = 10;
+playerName = "Sam";</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Variable Rules:</strong>
+                        <ul>
+                            <li>Use <code>let</code> for values that change</li>
+                            <li>Use <code>const</code> for values that stay the same</li>
+                            <li>Names can't have spaces (use camelCase: myVariableName)</li>
+                            <li>Names can't start with numbers</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Try it yourself!</h4>
+                        <div class="code-example">
+<pre><code>// Math with variables
+let a = 5;
+let b = 3;
+let sum = a + b;        // sum is 8
+let product = a * b;    // product is 15
+
+// Text (string) operations
+let firstName = "John";
+let lastName = "Doe";
+let fullName = firstName + " " + lastName;  // "John Doe"</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="functions" class="mt-5">
+                    <h2>Functions - Reusable Code</h2>
+                    <p>Functions are like recipes - a set of instructions you can use over and over:</p>
+                    
+                    <div class="code-example">
+<pre><code>// Creating a function
+function greetPlayer(name) {
+    alert("Welcome, " + name + "!");
+}
+
+// Using (calling) the function
+greetPlayer("Alice");   // Shows: Welcome, Alice!
+greetPlayer("Bob");     // Shows: Welcome, Bob!</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Functions can return values:</h4>
+                        <div class="code-example">
+<pre><code>function addNumbers(x, y) {
+    return x + y;
+}
+
+let result = addNumbers(5, 3);  // result is 8</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Common Mistake:</strong> Forgetting the parentheses () when calling a function. Always write <code>myFunction()</code>, not just <code>myFunction</code>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="conditions" class="mt-5">
+                    <h2>If/Else - Making Decisions</h2>
+                    <p>Programs need to make decisions based on conditions:</p>
+                    
+                    <div class="code-example">
+<pre><code>let age = 18;
+
+if (age >= 18) {
+    console.log("You can vote!");
+} else {
+    console.log("Too young to vote.");
+}
+
+// Multiple conditions
+let score = 85;
+
+if (score >= 90) {
+    console.log("Grade: A");
+} else if (score >= 80) {
+    console.log("Grade: B");
+} else if (score >= 70) {
+    console.log("Grade: C");
+} else {
+    console.log("Grade: F");
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Comparison Operators:</strong>
+                        <ul>
+                            <li><code>===</code> equal to</li>
+                            <li><code>!==</code> not equal to</li>
+                            <li><code>&gt;</code> greater than</li>
+                            <li><code>&lt;</code> less than</li>
+                            <li><code>&gt;=</code> greater than or equal</li>
+                            <li><code>&lt;=</code> less than or equal</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="build-game" class="mt-5">
+                    <h2>🎮 Let's Build: Number Guessing Game!</h2>
+                    <p>Now let's use everything we learned to build an interactive game!</p>
+
+                    <div class="game-container">
+                        <h3>The Complete Game</h3>
+                        <p>Create a new file called <code>number-game.html</code>:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Number Guessing Game&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        
+        .game-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        input {
+            font-size: 20px;
+            padding: 10px;
+            width: 100px;
+            margin: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+        
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        #message {
+            font-size: 20px;
+            margin: 20px;
+            height: 30px;
+        }
+        
+        .win { color: #28a745; }
+        .high { color: #dc3545; }
+        .low { color: #ffc107; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="game-container"&gt;
+        &lt;h1&gt;🎲 Number Guessing Game 🎲&lt;/h1&gt;
+        &lt;p&gt;I'm thinking of a number between 1 and 100!&lt;/p&gt;
+        
+        &lt;input type="number" id="guessInput" min="1" max="100" placeholder="?"&gt;
+        &lt;br&gt;
+        &lt;button onclick="checkGuess()"&gt;Guess!&lt;/button&gt;
+        &lt;button onclick="newGame()"&gt;New Game&lt;/button&gt;
+        
+        &lt;div id="message"&gt;&lt;/div&gt;
+        &lt;p&gt;Attempts: &lt;span id="attempts"&gt;0&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // Game variables
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        // Function to check the player's guess
+        function checkGuess() {
+            // Get the player's guess
+            let guess = document.getElementById('guessInput').value;
+            let message = document.getElementById('message');
+            
+            // Increase attempts
+            attempts++;
+            document.getElementById('attempts').textContent = attempts;
+            
+            // Convert guess to number
+            guess = parseInt(guess);
+            
+            // Check if guess is valid
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.textContent = "Please enter a number between 1 and 100!";
+                message.className = "";
+                return;
+            }
+            
+            // Check the guess
+            if (guess === secretNumber) {
+                message.textContent = "🎉 Congratulations! You got it in " + attempts + " tries!";
+                message.className = "win";
+            } else if (guess > secretNumber) {
+                message.textContent = "Too high! Try a lower number.";
+                message.className = "high";
+            } else {
+                message.textContent = "Too low! Try a higher number.";
+                message.className = "low";
+            }
+        }
+
+        // Function to start a new game
+        function newGame() {
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('attempts').textContent = attempts;
+            document.getElementById('message').textContent = "";
+            document.getElementById('guessInput').value = "";
+        }
+
+        // Allow Enter key to submit guess
+        document.getElementById('guessInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkGuess();
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>How the game works:</h4>
+                        <ol>
+                            <li><code>Math.random()</code> generates a random decimal between 0 and 1</li>
+                            <li>We multiply by 100 and add 1 to get 1-100</li>
+                            <li><code>Math.floor()</code> rounds down to whole number</li>
+                            <li>We track attempts and give hints (too high/low)</li>
+                            <li>The new game button resets everything</li>
+                        </ol>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Challenge yourself!</h4>
+                        <p>Try adding these features:</p>
+                        <ul>
+                            <li>Limit the number of guesses (e.g., 10 tries)</li>
+                            <li>Add difficulty levels (easy: 1-50, hard: 1-100)</li>
+                            <li>Keep track of best score (fewest attempts)</li>
+                            <li>Add sound effects for win/lose</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>🎉 Fantastic Progress!</h4>
+                        <p>You've learned JavaScript fundamentals:</p>
+                        <ul>
+                            <li>Variables to store data</li>
+                            <li>Functions to organize code</li>
+                            <li>If/else for decision making</li>
+                            <li>How to get user input</li>
+                            <li>How to generate random numbers</li>
+                            <li>Event listeners for keyboard input</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <h3>Ready for more power?</h3>
+                        <p>Next, we'll learn DOM manipulation to dynamically change any part of a webpage!</p>
+                        <a href="lesson4-dom-manipulation.html" class="btn btn-success btn-lg">Go to Lesson 4: DOM Manipulation →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

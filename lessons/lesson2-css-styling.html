@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: CSS Styling - Make Your Quiz Beautiful</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <style>
+        .demo-box {
+            width: 200px;
+            height: 100px;
+            margin: 10px;
+            display: inline-block;
+            text-align: center;
+            line-height: 100px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🎮 Code for Dummies</a>
+            <span class="navbar-text text-white">Lesson 2: CSS Styling</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="lesson-nav">
+                    <h5>In this lesson:</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#what-is-css">What is CSS?</a>
+                        <a class="nav-link" href="#css-syntax">CSS Syntax</a>
+                        <a class="nav-link" href="#colors-fonts">Colors & Fonts</a>
+                        <a class="nav-link" href="#box-model">The Box Model</a>
+                        <a class="nav-link" href="#style-quiz">Style Your Quiz!</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <h1>Lesson 2: CSS Styling 🎨</h1>
+                <p class="lead">Time to make your quiz game beautiful with CSS - the paint and decorations of the web!</p>
+
+                <div class="tip-box">
+                    <strong>🎯 Goal:</strong> Transform your plain quiz into a colorful, professional-looking game!
+                </div>
+
+                <section id="what-is-css" class="mt-5">
+                    <h2>What is CSS?</h2>
+                    <p>CSS stands for <strong>Cascading Style Sheets</strong>. If HTML is the skeleton, CSS is the skin, clothes, and makeup!</p>
+                    
+                    <div class="interactive-demo">
+                        <h4>See the difference!</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Without CSS:</strong></p>
+                                <div style="all: initial; font-family: serif; font-size: 16px;">
+                                    <p style="margin: 10px 0;">Hello World</p>
+                                    <button style="all: initial; font-family: serif; border: 2px solid black; padding: 2px;">Click me</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>With CSS:</strong></p>
+                                <p style="color: #007bff; font-size: 24px; font-weight: bold;">Hello World</p>
+                                <button class="btn btn-primary">Click me</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="css-syntax" class="mt-5">
+                    <h2>CSS Syntax</h2>
+                    <p>CSS has a simple pattern: select something, then style it!</p>
+                    
+                    <div class="code-example">
+<pre><code>selector {
+    property: value;
+    another-property: another-value;
+}</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h4>Real Example:</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <pre><code>h1 {
+    color: blue;
+    font-size: 36px;
+    text-align: center;
+}</code></pre>
+                            </div>
+                            <div class="col-md-6">
+                                <h1 style="color: blue; font-size: 36px; text-align: center;">Styled Heading!</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Three ways to add CSS:</strong>
+                        <ol>
+                            <li><strong>Inline:</strong> <code>&lt;p style="color: red;"&gt;Red text&lt;/p&gt;</code></li>
+                            <li><strong>Internal:</strong> <code>&lt;style&gt; p { color: red; } &lt;/style&gt;</code> in the head</li>
+                            <li><strong>External:</strong> <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code> (Best way!)</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="colors-fonts" class="mt-5">
+                    <h2>Colors & Fonts</h2>
+                    
+                    <h3>Colors</h3>
+                    <p>You can specify colors in several ways:</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="demo-box" style="background-color: red;">Named: red</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="demo-box" style="background-color: #007bff;">Hex: #007bff</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="demo-box" style="background-color: rgb(40, 167, 69);">RGB: rgb(40, 167, 69)</div>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">Fonts</h3>
+                    <div class="code-example">
+<pre><code>p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+}</code></pre>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <p style="font-family: Arial, sans-serif;">Arial Font</p>
+                        <p style="font-family: 'Times New Roman', serif;">Times New Roman Font</p>
+                        <p style="font-family: 'Courier New', monospace;">Courier New Font (for code)</p>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="box-model" class="mt-5">
+                    <h2>The Box Model</h2>
+                    <p>Every element is a box with four parts:</p>
+                    
+                    <div class="text-center">
+                        <div style="display: inline-block; background: #f0f0f0; padding: 20px;">
+                            <div style="background: #ddd; padding: 20px;">
+                                <div style="background: #bbb; padding: 20px;">
+                                    <div style="background: #999; padding: 20px; color: white;">
+                                        Content
+                                    </div>
+                                    <small>Padding</small>
+                                </div>
+                                <small>Border</small>
+                            </div>
+                            <small>Margin</small>
+                        </div>
+                    </div>
+
+                    <div class="code-example mt-4">
+<pre><code>div {
+    margin: 20px;      /* Space outside */
+    border: 2px solid black;  /* The border */
+    padding: 15px;     /* Space inside */
+    width: 200px;      /* Content width */
+}</code></pre>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+
+                <section id="style-quiz" class="mt-5">
+                    <h2>🎮 Let's Style: Make Your Quiz Beautiful!</h2>
+                    <p>Now let's add CSS to transform your quiz game!</p>
+
+                    <div class="game-container">
+                        <h3>Step 1: Create a CSS file</h3>
+                        <p>Create a new file called <code>quiz-styles.css</code> with this code:</p>
+                        
+                        <div class="code-example">
+<pre><code>/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+}
+
+#game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Title Styles */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Question Box */
+#question-box {
+    background-color: #e7f3ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#question-number {
+    color: #007bff;
+    font-size: 20px;
+}
+
+#question-text {
+    font-size: 18px;
+    color: #333;
+    margin: 15px 0;
+}
+
+/* Answer Buttons */
+#answer-buttons {
+    display: grid;
+    gap: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Score Section */
+#score-section {
+    text-align: center;
+    font-size: 20px;
+    color: #28a745;
+    font-weight: bold;
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="game-container">
+                        <h3>Step 2: Link CSS to your HTML</h3>
+                        <p>Update your quiz HTML file to include the CSS. Add this line in the <code>&lt;head&gt;</code> section:</p>
+                        
+                        <div class="code-example">
+<pre><code>&lt;head&gt;
+    &lt;title&gt;My Awesome Quiz Game&lt;/title&gt;
+    &lt;link rel="stylesheet" href="quiz-styles.css"&gt;
+&lt;/head&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="game-container">
+                        <h3>Complete Styled Quiz HTML:</h3>
+                        
+                        <div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Awesome Quiz Game&lt;/title&gt;
+    &lt;link rel="stylesheet" href="quiz-styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="game-container"&gt;
+        &lt;h1&gt;🎯 Quiz Master Challenge! 🎯&lt;/h1&gt;
+        
+        &lt;div id="question-box"&gt;
+            &lt;h2 id="question-number"&gt;Question 1:&lt;/h2&gt;
+            &lt;p id="question-text"&gt;What does HTML stand for?&lt;/p&gt;
+            
+            &lt;div id="answer-buttons"&gt;
+                &lt;button id="btn-a"&gt;A. Hyper Text Markup Language&lt;/button&gt;
+                &lt;button id="btn-b"&gt;B. Hot Tamale Making Language&lt;/button&gt;
+                &lt;button id="btn-c"&gt;C. How To Make Lasagna&lt;/button&gt;
+                &lt;button id="btn-d"&gt;D. Heavy Tool Moving Language&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div id="score-section"&gt;
+            &lt;p&gt;🏆 Score: &lt;span id="score"&gt;0&lt;/span&gt; points&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>💡 CSS Tips:</h4>
+                        <ul>
+                            <li>Use <code>border-radius</code> to make rounded corners</li>
+                            <li>Add <code>box-shadow</code> for a 3D effect</li>
+                            <li>Use <code>transition</code> for smooth hover effects</li>
+                            <li>Center things with <code>margin: 0 auto</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>🎉 Amazing Work!</h4>
+                        <p>Your quiz now looks professional! You learned:</p>
+                        <ul>
+                            <li>CSS syntax (selector, property, value)</li>
+                            <li>How to use colors and fonts</li>
+                            <li>The box model (margin, border, padding)</li>
+                            <li>How to create hover effects</li>
+                            <li>How to center and style containers</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <h3>Ready to make it work?</h3>
+                        <p>In the next lesson, we'll add JavaScript to make your buttons actually do something!</p>
+                        <a href="lesson3-javascript-basics.html" class="btn btn-success btn-lg">Go to Lesson 3: JavaScript Basics →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
